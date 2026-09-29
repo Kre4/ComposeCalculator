@@ -40,7 +40,7 @@ fun ButtonLayout(modifier: Modifier = Modifier, keyHandler: (CalculatorKey) -> U
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(defaultKeyOrder) { item ->
-            SquareButton(key = item, onClick = keyHandler)
+            KeyButton(key = item, onClick = keyHandler)
         }
     }
 }
