@@ -20,8 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import net.objecthunter.exp4j.ExpressionBuilder
 import ru.kre4.cursedcalculator.logic.CalculatorKey
+import ru.kre4.cursedcalculator.logic.ExpressionEvaluator
 import ru.kre4.cursedcalculator.ui.elements.ButtonLayout
 import ru.kre4.cursedcalculator.ui.theme.grannyText
 
@@ -48,15 +48,14 @@ fun CalculatorWindow(modifier: Modifier = Modifier) {
             keyHandler = { key ->
                 expression = when (key) {
                     CalculatorKey.Backspace -> expression.dropLast(1)
-                    CalculatorKey.Clear -> ""
-                    CalculatorKey.Evaluate ->
-                        try {
-                            ExpressionBuilder(expression).build().evaluate().toString()
-                        } catch (e: Exception) {
-                            Log.e("EvalLog", e.message, e)
+                    CalculatorKey.Clear -> "0"
+                    CalculatorKey.Evaluate -> {
+                        val result = ExpressionEvaluator.evaluate(expression)
+                        if (result == "Error") {
                             Toast.makeText(context, "Evaluation error", Toast.LENGTH_SHORT).show()
-                            expression
                         }
+                        result
+                    }
                     else -> expression + key.displayText
                 }
 
