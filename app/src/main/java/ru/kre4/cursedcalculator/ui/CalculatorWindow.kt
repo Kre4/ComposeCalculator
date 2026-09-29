@@ -45,7 +45,7 @@ fun CalculatorWindow(modifier: Modifier = Modifier) {
             keyHandler = { key ->
                 expression = when (key) {
                     CalculatorKey.Backspace -> expression.dropLast(1)
-                    CalculatorKey.Clear -> "0"
+                    CalculatorKey.Clear -> ""
                     CalculatorKey.Evaluate -> {
                         val result = ExpressionEvaluator.evaluate(expression)
                         if (result == "Error") {
