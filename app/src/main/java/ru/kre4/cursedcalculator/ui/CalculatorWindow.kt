@@ -12,9 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -35,7 +35,7 @@ fun CalculatorWindow(modifier: Modifier = Modifier) {
             textAlign = TextAlign.Right,
             style = MaterialTheme.typography.grannyText,
             modifier = Modifier
-                .weight(0.3f)
+                .weight(1f)
                 .padding(10.dp)
                 .wrapContentHeight()
                 .fillMaxWidth()
@@ -43,6 +43,7 @@ fun CalculatorWindow(modifier: Modifier = Modifier) {
         )
         ButtonLayout(
             modifier = Modifier
+                .weight(2f)
                 .fillMaxWidth(),
             keyHandler = { key ->
                 expression = when (key) {
