@@ -12,7 +12,6 @@ object ExpressionEvaluator {
     fun evaluate(expression: String): String {
         if (expression.isBlank()) return "0"
         return try {
-            if (isZeroDivZeroExpr(expression)) return "0"
             format(ExpressionBuilder(expression).build().evaluate())
         } catch (_: ArithmeticException) {
             "NaN"
